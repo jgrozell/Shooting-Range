@@ -1,8 +1,8 @@
 Reticle player;
 ArrayList<Duck> ducks = new ArrayList<Duck>();
-//PopupTarget pop = new PopupTarget(100,400);
+//PopupTarget pop = new PopupTarget(400,400);
 
-int numDucks = 25;
+int numDucks = 1;
 float score = 0.0;
 float shots = 0.0;
 int ammo = 30;
@@ -38,6 +38,7 @@ void draw() {
   player.display();
   
   // Scoreboard
+  textAlign(LEFT);
   if(score > 0) {
     accuracy = score / shots *100;
   }
@@ -50,14 +51,33 @@ void draw() {
   
   // End Game
   if(numDucks == 0) {
-    fill(0);
-    rect(0,0,width,height);
     fill(255);
     textAlign(CENTER,CENTER);
-    text("You Win!!!",width/2,height/2);
-    text("Shots: " + shots, width/2, height/2 +25);
-    text("Accuracy: " + accuracy + "%", width/2, height/2 +50); 
+    text("You Win!!!",width/2,height/2-75);
+    text("Shots: " + shots, width/2, height/2-50);
+    text("Accuracy: " + accuracy + "%", width/2, height/2-25);
   } 
+  
+  // grass
+  int x = -5;
+  for(int i = 0; i < width; i += 10) {
+    stroke(0);
+    strokeWeight(1);
+    fill(200,100,0);
+    triangle(x,height-50,x+20,height-50,x+10,height-130);
+    triangle(x,height,x+20,height,x+10,height-80);
+    x += 10;
+  }
+  x = -5;
+  for(int i = 0; i < width; i += 10) {
+    stroke(0);
+    strokeWeight(1);
+    fill(200,100,0);
+    triangle(x,height,x+20,height,x+10,height-80);
+    x += 10;
+  }
+  
+  
   //player.barrel();
 }
 

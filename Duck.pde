@@ -7,10 +7,10 @@ public class Duck {
   
   public Duck(int x, int y) {
     pos = new PVector(x,y);
-    vel = new PVector(xSpd,ySpd);
+    vel = new PVector(xSpd,-ySpd);
   }
   
-  void move() {
+  /*void move() {
     pos.add(vel);
     if(pos.x > width) {
       pos.x = 0;
@@ -20,7 +20,20 @@ public class Duck {
     } else if(pos.y < 0) {
       vel = new PVector(xSpd,ySpd);
     }
+  }*/
+  
+  void move() {
+    pos.add(vel);
+    if(pos.y < 0) {
+      pos.y = height;
+    }
+    if(pos.x > width) {
+      vel = new PVector(-xSpd,-ySpd);
+    } else if(pos.x < 0) {
+      vel = new PVector(xSpd,-ySpd);
+    }
   }
+    
   
   void display() {
     fill(200,100,0);

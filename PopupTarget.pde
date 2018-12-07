@@ -1,6 +1,7 @@
 public class PopupTarget {
   
   private PVector pos;
+  private PVector vel;
   private int w = 60, h = 60, maxH = -100;
   
   //Time Stuff
@@ -10,10 +11,11 @@ public class PopupTarget {
   
   private boolean up = false;
   
-  int speed = 0;
+  int speed = 2;
   
   public PopupTarget(int x,int y) {
     pos = new PVector(x,y);
+    vel = new PVector(6,-6);
   }
   
   public void move() {
@@ -31,7 +33,17 @@ public class PopupTarget {
         speed = -10;
       }
     }
-      
+    
+    pos.add(vel);
+    if(pos.x > width) {
+      pos.x = 0;
+    } 
+    vel.y = random(-6,6);
+    pos.y = constrain(pos.y,25,height-25);
+    
+    h -= speed;
+    h = constrain(h,maxH,0);
+    
   }
   
   public void display() {
@@ -39,5 +51,9 @@ public class PopupTarget {
     fill(255,0,0);
     rect(pos.x, pos.y, w, h);
   }
-}
   
+  /*public boolean clappinCheeks(Reticle r) {
+    float rx = r.getPos().x;
+    float ry = r.get
+  }*/
+}
